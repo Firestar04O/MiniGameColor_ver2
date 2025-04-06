@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +6,6 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    public static event Action OnLootMoney;
-    public static event Action OnLootHealth;
-
     public UIManager uimanager;
     public int maxHealth = 10;
     public int currentscore = 0;
@@ -28,6 +24,7 @@ public class Player : MonoBehaviour
     public int FinalTime;
     public int FinalScore;
     public bool Reset;
+    public bool Magic;
     private void Awake()
     {
         Imcolliding = false;
@@ -40,6 +37,20 @@ public class Player : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentscore = 0;
+    }
+    private void OnEnable()
+    {
+        InteractiveObjects.OnLootMoney += DissapearObject;
+        InteractiveObjects.OnLootMoney += AddScore;
+        InteractiveObjects.OnLootHealth += DissapearObject;
+        InteractiveObjects.OnLootHealth += AddHealth;
+    }
+    private void OnDisable()
+    {
+        InteractiveObjects.OnLootMoney -= DissapearObject;
+        InteractiveObjects.OnLootMoney -= AddScore;
+        InteractiveObjects.OnLootHealth -= DissapearObject;
+        InteractiveObjects.OnLootHealth -= AddHealth;
     }
     private void Update()
     {
@@ -88,6 +99,27 @@ public class Player : MonoBehaviour
         currentscore = 0;
         Reset = false;
     }
+    public void AddScore()
+    {
+        currentscore = currentscore + 50;
+    }
+    public void AddHealth()
+    {
+        int newhealth;
+        newhealth = currentHealth + 1;
+        if (newhealth >= 10)
+        {
+            currentHealth = 10;
+        }
+        else
+        {
+            currentHealth = newhealth;
+        }
+    }
+    public void DissapearObject()
+    {
+        Magic = true;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Imcolliding = true;
@@ -98,13 +130,12 @@ public class Player : MonoBehaviour
                 currentHealth--;
             }
         }
-        if(collision.gameObject.tag == "Money")
+        if (collision.gameObject.tag == "Money"|| collision.gameObject.tag == "Health")
         {
-            OnLootMoney?.Invoke();
-        }
-        else if (collision.gameObject.tag == "Health")
-        {
-            OnLootHealth?.Invoke();
+            if(Magic == true)
+            {
+                collision.gameObject.SetActive(false);
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
