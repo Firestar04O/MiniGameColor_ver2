@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
         InteractiveObjects.OnLootMoney += AddScore;
         InteractiveObjects.OnLootHealth += DissapearObject;
         InteractiveObjects.OnLootHealth += AddHealth;
+        LifeManager.OnVictory += VictoryResult;
+        LifeManager.OnDefeat += DefeatResult;
     }
     private void OnDisable()
     {
@@ -51,6 +53,8 @@ public class Player : MonoBehaviour
         InteractiveObjects.OnLootMoney -= AddScore;
         InteractiveObjects.OnLootHealth -= DissapearObject;
         InteractiveObjects.OnLootHealth -= AddHealth;
+        LifeManager.OnVictory -= VictoryResult;
+        LifeManager.OnDefeat -= DefeatResult;
     }
     private void Update()
     {
@@ -69,14 +73,6 @@ public class Player : MonoBehaviour
         {
             FinalTime = Mathf.FloorToInt(currenttime);
             FinalScore = currentscore;
-            if (currentHealth > 0)
-            {
-                Victory = "Victoria";
-            }
-            else
-            {
-                Victory = "Derrota";
-            }
             currentHealth = maxHealth;
             Result = false;
             uimanager.ShowResultPanel();
@@ -149,5 +145,13 @@ public class Player : MonoBehaviour
             Result = true;
             transform.position = new Vector2(-7, -3.385f);
         }
+    }
+    public void VictoryResult()
+    {
+        Victory = "Victoria";
+    }
+    public void DefeatResult()
+    {
+        Victory = "Derrota";
     }
 }
