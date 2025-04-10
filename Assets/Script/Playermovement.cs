@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Playermovement : MonoBehaviour
 {
@@ -34,11 +35,6 @@ public class Playermovement : MonoBehaviour
         {
             Horizontal = Input.GetAxis("Horizontal");
             _direction = Vector2.down;
-            if (Input.GetKeyDown(KeyCode.Space) && Verifyjump || Input.GetKeyDown(KeyCode.Space) && count < 1)
-            {
-                jumpPresssed = true;
-                count++;
-            }
             DoRaycast(_direction);
         }
     }
@@ -52,6 +48,15 @@ public class Playermovement : MonoBehaviour
                 myrgbd.velocity = new Vector2(myrgbd.velocity.x, jumpforce);
                 jumpPresssed = false;
             }
+        }
+    }
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        Debug.Log($"Jumpeando {context.phase}");
+        if (Input.GetKeyDown(KeyCode.Space) && Verifyjump || Input.GetKeyDown(KeyCode.Space) && count < 1)
+        {
+            jumpPresssed = true;
+            count++;
         }
     }
     public void DoRaycast(Vector2 direction)
