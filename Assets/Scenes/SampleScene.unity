@@ -1095,7 +1095,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1430938365}
         m_TargetAssemblyTypeName: Playermovement, Assembly-CSharp
-        m_MethodName: OnMovement
+        m_MethodName: OnJumping
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1107,6 +1107,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1084580e-24d6-4c0c-bf61-d8d7874dba62
     m_ActionName: Game/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1430938365}
+        m_TargetAssemblyTypeName: Playermovement, Assembly-CSharp
+        m_MethodName: OnMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7cd51ef4-7e88-42fb-958b-6047455e248c
+    m_ActionName: Game/Movement[/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 194028778}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: OnPressRightButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a52dbdd0-4b60-4866-aae7-30d91ccfde6d
+    m_ActionName: Game/ChangeRightColor[/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 194028778}
+        m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
+        m_MethodName: OnPressLeftButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cb8e6112-5526-444d-8c8a-339fd0f3b873
+    m_ActionName: Game/ChangeLeftColor[/Keyboard/i]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Game
@@ -1264,6 +1312,8 @@ MonoBehaviour:
   player: {fileID: 1430938367}
   playerspriteRenderer: {fileID: 0}
   mybutton: {fileID: 0}
+  buttons: 
+  count: 0
 --- !u!1 &197744177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,9 +1619,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 100
   maximumdistance: 245
   minimumdistance: 202
+  stop: 0
 --- !u!50 &264152102
 Rigidbody2D:
   serializedVersion: 4
@@ -1743,9 +1795,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 10
   maximumdistance: 1
   minimumdistance: -2
+  stop: 0
 --- !u!50 &265978586
 Rigidbody2D:
   serializedVersion: 4
@@ -2047,9 +2101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 10
   maximumdistance: 1
   minimumdistance: -2
+  stop: 0
 --- !u!50 &302701239
 Rigidbody2D:
   serializedVersion: 4
@@ -3436,6 +3492,8 @@ MonoBehaviour:
   player: {fileID: 1430938367}
   playerspriteRenderer: {fileID: 0}
   mybutton: {fileID: 0}
+  buttons: 
+  count: 0
 --- !u!114 &526386743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4453,6 +4511,8 @@ MonoBehaviour:
   player: {fileID: 1430938367}
   playerspriteRenderer: {fileID: 0}
   mybutton: {fileID: 0}
+  buttons: 
+  count: 0
 --- !u!114 &822479285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5094,9 +5154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 10
   maximumdistance: 7
   minimumdistance: -2
+  stop: 0
 --- !u!50 &1034985735
 Rigidbody2D:
   serializedVersion: 4
@@ -5609,9 +5671,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 20
   maximumdistance: 64
   minimumdistance: 20
+  stop: 0
 --- !u!50 &1111268114
 Rigidbody2D:
   serializedVersion: 4
@@ -6056,9 +6120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 10
   maximumdistance: 1
   minimumdistance: -2
+  stop: 0
 --- !u!50 &1150128596
 Rigidbody2D:
   serializedVersion: 4
@@ -6901,9 +6967,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 100
   maximumdistance: 188
   minimumdistance: 146
+  stop: 0
 --- !u!50 &1358476190
 Rigidbody2D:
   serializedVersion: 4
@@ -7477,6 +7545,8 @@ MonoBehaviour:
   player: {fileID: 0}
   playerspriteRenderer: {fileID: 0}
   mybutton: {fileID: 194028775}
+  buttons: 
+  count: 0
 --- !u!114 &1430938367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7500,6 +7570,7 @@ MonoBehaviour:
   time: {fileID: 303209553}
   timerend: {fileID: 2118928177}
   End: {fileID: 1956226919}
+  myspriteRenderer: {fileID: 0}
   Imcolliding: 0
   Result: 0
   Victory: 
@@ -8781,9 +8852,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 10
   maximumdistance: 1
   minimumdistance: -2
+  stop: 0
 --- !u!50 &1870318850
 Rigidbody2D:
   serializedVersion: 4
@@ -9697,9 +9770,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c97a293d8cf3745b2daa90ec81ea0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1430938367}
   enemyvelocity: 10
   maximumdistance: 107
   minimumdistance: 80
+  stop: 0
 --- !u!50 &2083039022
 Rigidbody2D:
   serializedVersion: 4

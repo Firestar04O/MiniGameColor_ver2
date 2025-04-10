@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI time;
     public TextMeshProUGUI timerend;
     public TextMeshProUGUI End;
-    SpriteRenderer myspriteRenderer;
+    public SpriteRenderer myspriteRenderer;
     public bool Imcolliding;
     public bool Result;
     public string Victory;

@@ -31,12 +31,8 @@ public class Playermovement : MonoBehaviour
     }
     private void Update()
     {
-        if (uimanager.Invideogame)
-        {
-            Horizontal = Input.GetAxis("Horizontal");
-            _direction = Vector2.down;
-            DoRaycast(_direction);
-        }
+        _direction = Vector2.down;
+        DoRaycast(_direction);
     }
     void FixedUpdate()
     {
@@ -50,13 +46,23 @@ public class Playermovement : MonoBehaviour
             }
         }
     }
+    public void OnJumping(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (Verifyjump || count < 1)
+            {
+                jumpPresssed = true;
+                count++;
+            }
+        }
+    }
     public void OnMovement(InputAction.CallbackContext context)
     {
-        Debug.Log($"Jumpeando {context.phase}");
-        if (Input.GetKeyDown(KeyCode.Space) && Verifyjump || Input.GetKeyDown(KeyCode.Space) && count < 1)
+        if (uimanager.Invideogame)
         {
-            jumpPresssed = true;
-            count++;
+            Horizontal = context.ReadValue<float>();
+            //Horizontal = Input.GetAxis("Horizontal");
         }
     }
     public void DoRaycast(Vector2 direction)
